@@ -1,7 +1,16 @@
-<h2>hello</h2>
-<p>welcome</p>
-<ul>
-  <li>dog</li>
-  <li>cat</li>
-  <li>fish</li>
-</ul>
+<h2>{{currentTime() | date}}</h2>
+<!-- one way binidng -->
+<p>{{username() | allcaps}}</p>
+<p>{{userEmail()}}</p>
+<br/>
+<!-- event binding -->
+<button (click)="doubleUsername($event)">double the username</button>
+<p>{{getUsername()}}</p>
+<p>{{username() + '.com'}}</p>
+<p>1 + 1 = {{1+1}}</p>
+<!-- two way binding -->
+<input [(ngModel)]="address">
+<p>{{address}}</p>
+<br>
+<button (click)="toggleButtonB()">disable/enable button B</button>
+<button [disabled]="isButtonBDisabled">this is button B</button>
