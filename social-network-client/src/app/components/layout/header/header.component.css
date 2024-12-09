@@ -1,0 +1,12 @@
+#header {
+    display: flex;
+    flex-direction: row ;
+    justify-content: space-evenly;
+    
+}
+
+#header > div {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
