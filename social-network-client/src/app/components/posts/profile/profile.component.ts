@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProfileService } from '../../../services/profile.service';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-profile',
@@ -9,13 +10,14 @@ import { ProfileService } from '../../../services/profile.service';
 })
 export class ProfileComponent implements OnInit{
 
-  answer: number = 0
+  serverUrl = environment.restServerUrl
 
   constructor( private profileService: ProfileService ) {}
   
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     // fetch data from server
-    this.answer = this.profileService.getAnswer()
+    const profilePosts = await this.profileService.getUserPosts()
+    console.log(profilePosts)
   }
 
 }
