@@ -21,6 +21,7 @@ export class AppComponent implements OnInit, OnDestroy {
   getUsername() {
     return this.username()
   }
+  
 
   doubleUsername(event: any) {
     console.log(event)

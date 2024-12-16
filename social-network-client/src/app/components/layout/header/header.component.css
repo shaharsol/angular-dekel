@@ -10,3 +10,7 @@
     flex-direction: row;
     gap: 20px;
 }
+
+.active {
+    color: green;
+}
