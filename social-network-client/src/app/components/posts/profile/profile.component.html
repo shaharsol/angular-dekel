@@ -1,2 +1,8 @@
-<p>profile works!</p>
-<p>{{serverUrl}}</p>
+<table>
+    @for (post of profilePosts; track post.id) {
+        <app-post [post]="post"></app-post>
+    }
+    @empty {
+        <app-spinner></app-spinner>
+    }
+</table>
