@@ -11,6 +11,7 @@ import { ProfileService } from '../../../services/profile.service';
 })
 export class PostComponent {
   post = input<Post>()
+  allowActions = input<boolean>(false)
   deletedPost = output<string>()
 
   constructor( private profileService: ProfileService ) {}

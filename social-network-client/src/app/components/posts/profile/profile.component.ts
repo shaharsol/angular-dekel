@@ -30,11 +30,12 @@ export class ProfileComponent implements OnInit{
     console.log(`id is ${id}`)
 
     if (this.profilePosts) {
-      const index = this.profilePosts.findIndex(post => post.id === id)
-      console.log(`index is ${index}`)
-      if(index !== -1) {
-        this.profilePosts?.splice(index, 1)
-      }
+      this.profilePosts = this.profilePosts.filter(post => post.id !== id)
+      // const index = this.profilePosts.findIndex(post => post.id === id)
+      // console.log(`index is ${index}`)
+      // if(index !== -1) {
+      //   this.profilePosts?.splice(index, 1)
+      // }
     }
 
   }

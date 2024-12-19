@@ -3,6 +3,7 @@
         <app-post 
             [post]="post" 
             (deletedPost)="removePost($event)"
+            [allowActions]="true"
         ></app-post>
     }
     @empty {
