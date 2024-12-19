@@ -1,6 +1,9 @@
 <table>
     @for (post of profilePosts; track post.id) {
-        <app-post [post]="post"></app-post>
+        <app-post 
+            [post]="post" 
+            (deletedPost)="removePost($event)"
+        ></app-post>
     }
     @empty {
         <app-spinner></app-spinner>

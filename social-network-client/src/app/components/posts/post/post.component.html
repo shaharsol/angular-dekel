@@ -2,4 +2,9 @@
     <div class="title">{{post()?.title}}</div>
     <div class="byLine">by {{post()?.user?.name}} on {{post()?.createdAt | date}}</div>
     <div class="body">{{post()?.body}}</div>
+    <div>
+        <button 
+            (click)="deleteMe()"
+        >delete</button>
+    </div>
 </div>

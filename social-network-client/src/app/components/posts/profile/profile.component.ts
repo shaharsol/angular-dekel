@@ -25,4 +25,18 @@ export class ProfileComponent implements OnInit{
     console.log(`rand is ${this.profileService.rand}`)
   }
 
+  removePost(id: string) {
+    
+    console.log(`id is ${id}`)
+
+    if (this.profilePosts) {
+      const index = this.profilePosts.findIndex(post => post.id === id)
+      console.log(`index is ${index}`)
+      if(index !== -1) {
+        this.profilePosts?.splice(index, 1)
+      }
+    }
+
+  }
+
 }
