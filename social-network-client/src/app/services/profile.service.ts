@@ -11,6 +11,8 @@ export class ProfileService {
 
   constructor( private httpClient: HttpClient ) { }
 
+  public rand = Math.random()
+
   async getUserPosts(): Promise<Post[]> {
     const response = this.httpClient.get<Post[]>(`${environment.restServerUrl}/posts`)  
     // const profile = await firstValueFrom(response)

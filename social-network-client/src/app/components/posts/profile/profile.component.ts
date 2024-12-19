@@ -22,6 +22,7 @@ export class ProfileComponent implements OnInit{
   async ngOnInit(): Promise<void> {
     // fetch data from server
     this.profilePosts = await this.profileService.getUserPosts()
+    console.log(`rand is ${this.profileService.rand}`)
   }
 
 }

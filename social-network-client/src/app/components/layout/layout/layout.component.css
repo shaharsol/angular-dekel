@@ -33,3 +33,7 @@
 #grid > * {
     outline: 1px dashed black;
 }
+
+main {
+    overflow: scroll;
+}
