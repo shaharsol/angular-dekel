@@ -2,8 +2,8 @@
     @for (post of profilePosts; track post.id) {
         <app-post 
             [post]="post" 
-            (deletedPost)="removePost($event)"
             [allowActions]="true"
+            (deletedPost)="removePost($event)"
         ></app-post>
     }
     @empty {
