@@ -1,5 +1,5 @@
-<form (ngSubmit)="addPost()">
-    <input placeholder="title" [(ngModel)]="title" #titleInput="ngModel" required minlength="3" name="title">
+<form (ngSubmit)="addPost()" #myForm="ngForm">
+    <input placeholder="title" [(ngModel)]="draft().title" #titleInput="ngModel" required minlength="3" name="title">
     <div [hidden]="titleInput.valid || !titleInput.dirty">
         @if (titleInput.errors?.['required']) {
             <p>title is required</p>
@@ -8,7 +8,7 @@
             <p>title must be at least 3 chars long</p>
         }
     </div>
-    <textarea placeholder="body" [(ngModel)]="body" #bodyInput="ngModel" required minlength="5" name="body"></textarea>
+    <textarea placeholder="body" [(ngModel)]="draft().body" #bodyInput="ngModel" required minlength="5" name="body"></textarea>
     <div [hidden]="bodyInput.valid || !bodyInput.dirty">
         @if (bodyInput.errors?.['required']) {
             <p>body is required</p>
@@ -17,5 +17,5 @@
             <p>body must be at least 3 chars long</p>
         }
     </div>
-    <button>Add Post</button>
+    <button [disabled]="myForm.invalid">Add Post</button>
 </form>

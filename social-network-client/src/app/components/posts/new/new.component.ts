@@ -1,6 +1,7 @@
 import { FormsModule } from '@angular/forms';
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { ProfileService } from '../../../services/profile.service';
+import { Draft } from '../../../models/posts/draft.model';
 
 @Component({
   selector: 'app-new',
@@ -9,14 +10,16 @@ import { ProfileService } from '../../../services/profile.service';
   styleUrl: './new.component.css'
 })
 export class NewComponent {
-  public title = ''
-  public body = ''
+  public draft = signal<Draft>({
+    title: '',
+    body: ''
+  }) 
 
   constructor( private profileService: ProfileService ) {}
 
-  addPost() {
-    console.log(this.title)
-    console.log(this.body)
+  async addPost() {
+    const newPost = await this.profileService.addPost(this.draft())
+    console.log(newPost)
   }
 }
 

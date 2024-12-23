@@ -1,10 +1,9 @@
 import { User } from "../users/user.model";
+import { Draft } from "./draft.model";
 
-export interface Post {
+export interface Post extends Draft{
     id: string,
     userId: string,
-    title: string,
-    body: string,
     createdAt: string,
     user: User
 }
