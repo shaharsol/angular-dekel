@@ -1,0 +1,21 @@
+<form (ngSubmit)="addPost()">
+    <input placeholder="title" [(ngModel)]="title" #titleInput="ngModel" required minlength="3" name="title">
+    <div [hidden]="titleInput.valid || !titleInput.dirty">
+        @if (titleInput.errors?.['required']) {
+            <p>title is required</p>
+        }
+        @else if (titleInput.errors?.['minlength']) {
+            <p>title must be at least 3 chars long</p>
+        }
+    </div>
+    <textarea placeholder="body" [(ngModel)]="body" #bodyInput="ngModel" required minlength="5" name="body"></textarea>
+    <div [hidden]="bodyInput.valid || !bodyInput.dirty">
+        @if (bodyInput.errors?.['required']) {
+            <p>body is required</p>
+        }
+        @else if (bodyInput.errors?.['minlength']) {
+            <p>body must be at least 3 chars long</p>
+        }
+    </div>
+    <button>Add Post</button>
+</form>

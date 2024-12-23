@@ -1,12 +1,11 @@
-<table>
-    @for (post of profilePosts; track post.id) {
-        <app-post 
-            [post]="post" 
-            [allowActions]="true"
-            (deletedPost)="removePost($event)"
-        ></app-post>
-    }
-    @empty {
-        <app-spinner></app-spinner>
-    }
-</table>
+<app-new></app-new>
+@for (post of profilePosts; track post.id) {
+    <app-post
+        [post]="post" 
+        [allowActions]="true"
+        (deletedPost)="removePost($event)"
+    ></app-post>
+}
+@empty {
+    <app-spinner></app-spinner>
+}
