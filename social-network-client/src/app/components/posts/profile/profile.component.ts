@@ -41,4 +41,8 @@ export class ProfileComponent implements OnInit{
 
   }
 
+  addPost(post: Post) {
+    this.profilePosts = this.profilePosts ? [post, ...this.profilePosts] : [post]
+  }
+
 }

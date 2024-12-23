@@ -1,7 +1,8 @@
 import { FormsModule } from '@angular/forms';
-import { Component, signal } from '@angular/core';
+import { Component, output, signal } from '@angular/core';
 import { ProfileService } from '../../../services/profile.service';
 import { Draft } from '../../../models/posts/draft.model';
+import { Post } from '../../../models/posts/post.model';
 
 @Component({
   selector: 'app-new',
@@ -15,11 +16,13 @@ export class NewComponent {
     body: ''
   }) 
 
+  newPost = output<Post>()
+
   constructor( private profileService: ProfileService ) {}
 
   async addPost() {
     const newPost = await this.profileService.addPost(this.draft())
-    console.log(newPost)
+    this.newPost.emit(newPost)
   }
 }
 

@@ -1,4 +1,4 @@
-<div class="post">
+<div class="post ">
     <div class="title">{{post()?.title}}</div>
     <div class="byLine">by {{post()?.user?.name}} on {{post()?.createdAt | date}}</div>
     <div class="body">{{post()?.body}}</div>
@@ -7,6 +7,7 @@
             <button 
                 (click)="deleteMe()"
             >delete</button>
+            <button (click)="editMe()">edit</button>
         </div>
     }
 </div>

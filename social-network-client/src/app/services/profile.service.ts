@@ -22,6 +22,11 @@ export class ProfileService {
     return firstValueFrom(response)
   }
 
+  async getUserPost(id: string): Promise<Post> {
+    const response = this.httpClient.get<Post>(`${environment.restServerUrl}/posts/${id}`)  
+    return firstValueFrom(response)
+  }
+
   async removePost(id: string): Promise<boolean> {
     const response = this.httpClient.delete<boolean>(`${environment.restServerUrl}/posts/${id}`)  
     return firstValueFrom(response)

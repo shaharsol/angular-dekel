@@ -1,4 +1,4 @@
-<app-new></app-new>
+<app-new (newPost)="addPost($event)"></app-new>
 @for (post of profilePosts; track post.id) {
     <app-post
         [post]="post" 

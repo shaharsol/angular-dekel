@@ -2,6 +2,7 @@ import { Component, input, output } from '@angular/core';
 import { Post } from '../../../models/posts/post.model';
 import { DatePipe } from '@angular/common';
 import { ProfileService } from '../../../services/profile.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-post',
@@ -14,7 +15,10 @@ export class PostComponent {
   allowActions = input<boolean>(false)
   deletedPost = output<string>()
 
-  constructor( private profileService: ProfileService ) {}
+  constructor( 
+    private profileService: ProfileService,
+    private router: Router
+  ) {}
 
   async deleteMe() {
     const post = this.post()
@@ -26,6 +30,10 @@ export class PostComponent {
         this.deletedPost.emit(post.id)
       }
     }
+  }
+
+  editMe() {
+    this.router.navigate([`/edit/${this.post()?.id}`])
   }
 
 }
