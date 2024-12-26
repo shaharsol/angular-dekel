@@ -2,6 +2,7 @@ import { ProfileService } from './../../../services/profile.service';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Draft } from '../../../models/posts/draft.model';
 
 @Component({
   selector: 'app-edit',
@@ -12,6 +13,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class EditComponent implements OnInit{
   constructor (
     private route: ActivatedRoute,
+    private router: Router,
     private profileService: ProfileService
   ) {}
 
@@ -35,9 +37,14 @@ export class EditComponent implements OnInit{
     console.log(`will edit post ${postId}`)
   }
 
-  editPost() {
+  async editPost() {
     if(this.editForm.valid) {
-
+      const postId = this.route.snapshot.paramMap.get('id')
+      const { title, body } = this.editForm.value
+      if (postId && title && body) {
+        const updatedPost = await this.profileService.updatePost(postId, { title, body })
+        this.router.navigate(['/profile'])
+      }
     }
   }
 }

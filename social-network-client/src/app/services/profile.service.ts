@@ -36,4 +36,9 @@ export class ProfileService {
     const response = this.httpClient.post<Post>(`${environment.restServerUrl}/posts`, draft)  
     return firstValueFrom(response)
   }
+
+  async updatePost(id: string, draft: Draft): Promise<Post> {
+    const response = this.httpClient.patch<Post>(`${environment.restServerUrl}/posts/${id}`, draft)  
+    return firstValueFrom(response)
+  }
 }
