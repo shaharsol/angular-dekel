@@ -1,5 +1,22 @@
 <form [formGroup]="editForm" (ngSubmit)="editPost()">
     <input formControlName="title">
+    <div [hidden]="editForm.controls.title.valid || !editForm.controls.title.dirty">
+        @if (editForm.controls.title.errors?.['required']) {
+            <p>title is required</p>
+        }
+        @else if (editForm.controls.title.errors?.['minlength']) {
+            <p>title must be at least 3 chars long</p>
+        }
+    </div>
     <textarea formControlName="body"></textarea>
+    <div [hidden]="editForm.controls.body.valid || !editForm.controls.body.dirty">
+        @if (editForm.controls.body.errors?.['required']) {
+            <p>body is required</p>
+        }
+        @else if (editForm.controls.body.errors?.['minlength']) {
+            <p>body must be at least 3 chars long</p>
+        }
+    </div>
+    
     <button>Save Changes</button>
 </form>

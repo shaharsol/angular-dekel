@@ -1,6 +1,6 @@
 import { ProfileService } from './../../../services/profile.service';
 import { Component, OnInit } from '@angular/core';
-import { FormsModule, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -17,22 +17,27 @@ export class EditComponent implements OnInit{
 
   editForm = new FormGroup({
     title: new FormControl('',[
-
+      Validators.required,
+      Validators.minLength(10)
     ]),
     body: new FormControl('',[
-
+      Validators.required,
+      Validators.minLength(20)
     ])
   })
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     const postId = this.route.snapshot.paramMap.get('id')
     if(postId) {
-      const post = this.profileService.getUserPost(postId)
+      const post = await this.profileService.getUserPost(postId)
+      this.editForm.patchValue(post)
     }
     console.log(`will edit post ${postId}`)
   }
 
   editPost() {
-    console.log(this.editForm)
+    if(this.editForm.valid) {
+
+    }
   }
 }
