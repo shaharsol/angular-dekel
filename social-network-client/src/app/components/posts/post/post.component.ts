@@ -3,10 +3,11 @@ import { Post } from '../../../models/posts/post.model';
 import { DatePipe } from '@angular/common';
 import { ProfileService } from '../../../services/profile.service';
 import { Router } from '@angular/router';
+import { CommentsComponent } from "../comments/comments.component";
 
 @Component({
   selector: 'app-post',
-  imports: [DatePipe],
+  imports: [DatePipe, CommentsComponent],
   templateUrl: './post.component.html',
   styleUrl: './post.component.css'
 })
