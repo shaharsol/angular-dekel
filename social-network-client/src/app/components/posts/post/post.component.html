@@ -10,5 +10,8 @@
             <button (click)="editMe()">edit</button>
         </div>
     }
-    <app-comments [comments]="post()?.comments"></app-comments>
+    <app-comments 
+        [comments]="post()?.comments"
+        [postId]="post()?.id"
+    ></app-comments>
 </div>

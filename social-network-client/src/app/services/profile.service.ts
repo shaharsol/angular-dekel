@@ -4,6 +4,8 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { firstValueFrom } from 'rxjs';
 import { Draft } from '../models/posts/draft.model';
+import { CommentDraft } from '../models/comments/comment-draft.model';
+import { Comment } from '../models/comments/comment.model';
 
 @Injectable({
   providedIn: 'root'
@@ -41,4 +43,10 @@ export class ProfileService {
     const response = this.httpClient.patch<Post>(`${environment.restServerUrl}/posts/${id}`, draft)  
     return firstValueFrom(response)
   }
+
+  async addComment(postId: string, draft: CommentDraft): Promise<Comment> {
+    const response = this.httpClient.post<Comment>(`${environment.restServerUrl}/comments/${postId}`, draft)  
+    return firstValueFrom(response)
+  }
+
 }
