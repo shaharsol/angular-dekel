@@ -1,5 +1,5 @@
 <p>my following</p>
-@for (follow of following; track follow.id) {
+@for (follow of following(); track follow.id) {
     <div>
         {{follow.name}} <button (click)="unfollow(follow.id)">unfollow</button>
     </div>

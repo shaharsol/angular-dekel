@@ -1,7 +1,11 @@
 <p>my followers</p>
-@for (follower of followers; track follower.id) {
+@for (follower of followers(); track follower.id) {
     <div>
-        {{follower.name}}
+        {{follower.name}} 
+        
+        @if (isFollowing(follower.id)) {
+            <button (click)="follow(follower.id)">follow</button>
+        }
     </div>
 }
 @empty {
