@@ -1,1 +1,9 @@
-<p>following works!</p>
+<p>my following</p>
+@for (follow of following; track follow.id) {
+    <div>
+        {{follow.name}}
+    </div>
+}
+@empty {
+    <p>you follow nothing john snow...</p>
+}
