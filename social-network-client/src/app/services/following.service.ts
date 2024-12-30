@@ -16,4 +16,9 @@ export class FollowingService {
       return firstValueFrom(response)
       
     }
+
+    async unfollow(id: string): Promise<boolean> {
+      const response = this.httpClient.post<boolean>(`${environment.restServerUrl}/follows/unfollow/${id}`, {})  
+      return firstValueFrom(response)
+    }
 }

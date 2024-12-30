@@ -16,4 +16,12 @@ export class FollowingComponent {
   async ngOnInit(): Promise<void> {
     this.following = await this.followingService.getFollowing()
   }
+
+  async unfollow(id: string) {
+    const unfollowed = await this.followingService.unfollow(id)
+    if(unfollowed) {
+      this.following = this.following?.filter(follow => follow.id !== id)
+    }
+
+  }
 }
