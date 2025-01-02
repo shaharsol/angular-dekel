@@ -21,6 +21,7 @@ export class ProfileComponent implements OnInit{
   serverUrl = environment.restServerUrl
 
   public profilePosts: Signal<Post[]> = injectAppSelector(state => state.profile.posts)
+  public newProfilePosts: Signal<Post[]> = injectAppSelector(state => state.profile.newPosts)
   public dispatch = injectAppDispatch()
 
 

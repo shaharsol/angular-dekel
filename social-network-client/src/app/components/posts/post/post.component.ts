@@ -1,11 +1,11 @@
-import { Component, input, output } from '@angular/core';
+import { Component, input, OnInit, output } from '@angular/core';
 import { Post } from '../../../models/posts/post.model';
 import { DatePipe } from '@angular/common';
 import { ProfileService } from '../../../services/profile.service';
 import { Router } from '@angular/router';
 import { CommentsComponent } from "../comments/comments.component";
 import { injectAppDispatch } from '../../../store/injectables';
-import { remove } from '../../../store/profile-slice';
+import { mergeNew, remove } from '../../../store/profile-slice';
 
 @Component({
   selector: 'app-post',
@@ -13,9 +13,11 @@ import { remove } from '../../../store/profile-slice';
   templateUrl: './post.component.html',
   styleUrl: './post.component.css'
 })
-export class PostComponent {
+export class PostComponent implements OnInit{
   post = input<Post>()
+  isNewPost = input<boolean>(false)
   allowActions = input<boolean>(false)
+  cssClass: string = 'post'
   // deletedPost = output<string>()
   public dispatch = injectAppDispatch()
 
@@ -41,6 +43,15 @@ export class PostComponent {
 
   editMe() {
     this.router.navigate([`/edit/${this.post()?.id}`])
+  }
+
+  ngOnInit(): void {
+    if(this.isNewPost()) {
+      this.cssClass += ' newPost'
+      setTimeout(() => {
+        this.dispatch(mergeNew())
+      }, 2000)
+    }
   }
 
 }

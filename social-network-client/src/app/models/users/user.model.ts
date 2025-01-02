@@ -1,5 +1,6 @@
-export interface User {
+import { Base } from "./base.model";
+
+export interface User extends Base{
     id: string,
-    username :string,
     name: string
 }

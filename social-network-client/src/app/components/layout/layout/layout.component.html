@@ -1,17 +1,23 @@
-<div id="grid">
-    <header>
-        <app-header></app-header>
-    </header>
-    <aside id="followers">
-        <app-followers></app-followers>
-    </aside>
-    <aside id="following">
-        <app-following></app-following>
-    </aside>
-    <main>
-        <router-outlet></router-outlet>
-    </main>
-    <footer>
-        <app-footer></app-footer>
-    </footer>
-</div>
+@if (jwt()) {
+    <div id="grid">
+        <header>
+            <app-header></app-header>
+        </header>
+        <aside id="followers">
+            <app-followers></app-followers>
+        </aside>
+        <aside id="following">
+            <app-following></app-following>
+        </aside>
+        <main>
+            <router-outlet></router-outlet>
+        </main>
+        <footer>
+            <app-footer></app-footer>
+        </footer>
+    </div>
+}
+@else {
+    <app-login></app-login>
+}
+

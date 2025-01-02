@@ -4,12 +4,37 @@ import { User } from '../models/users/user.model'
 import { Post } from '../models/posts/post.model'
 import { Comment } from '../models/comments/comment.model'
 
+
+// interface PostMeta {
+//   post: Post,
+//   isNew: boolean
+// }
+
+// interface PostMeta {
+//   post: Post,
+//   isFiltered: boolean
+// }
+
+
 export interface ProfileState {
   posts: Post[],
+  newPosts: Post[]
+}
+
+// export interface ProfileState {
+//   visualPosts: Post[],
+//   filteredPosts: Post[]
+// }
+
+export interface ProfileState {
+  posts: Post[]
+  visiblePosts: Post[],
+  // filteredPosts: Post[]
 }
 
 const initialState: ProfileState = {
   posts: [],
+  newPosts: []
 }
 
 export const profileSlice = createSlice({
@@ -20,7 +45,11 @@ export const profileSlice = createSlice({
       state.posts = action.payload
     },
     add: (state, action: PayloadAction<Post>) => {
-      state.posts.push(action.payload)
+      state.newPosts.push(action.payload)
+    },
+    mergeNew: (state) => {
+      state.posts = [...state.newPosts, ...state.posts]
+      state.newPosts = []
     },
     remove: (state, action: PayloadAction<{id: string}>) => {
       state.posts = state.posts.filter(post => post.id != action.payload.id)
@@ -36,6 +65,6 @@ export const profileSlice = createSlice({
   },
 })
 
-export const { init, add, remove, update, addComment } = profileSlice.actions
+export const { init, add, remove, update, addComment, mergeNew } = profileSlice.actions
 
 export default profileSlice.reducer

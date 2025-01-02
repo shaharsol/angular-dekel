@@ -4,6 +4,13 @@
     after redux, we don't need
 -->
 <app-new></app-new>
+@for (newPost of newProfilePosts(); track newPost.id) {
+    <app-post
+        [post]="newPost" 
+        [allowActions]="true"
+        [isNewPost]="true"
+    ></app-post>
+}
 @for (post of profilePosts(); track post.id) {
     <!-- 
     before redux we had to propagate the output events
