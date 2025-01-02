@@ -17,7 +17,7 @@ export class FollowingComponent {
   constructor (private followingService: FollowingService) {}
 
   async ngOnInit(): Promise<void> {
-    if(this.following?.length === 0) {
+    if(this.following().length === 0) {
       const following = await this.followingService.getFollowing()
       this.dispatch(init(following))
     }

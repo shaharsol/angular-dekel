@@ -3,7 +3,7 @@ import type { PayloadAction } from '@reduxjs/toolkit'
 import { User } from '../models/users/user.model'
 
 export interface FollowingState {
-  following: User[]
+  following: User[],
 }
 
 const initialState: FollowingState = {

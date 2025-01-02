@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Draft } from '../../../models/posts/draft.model';
+import { injectAppDispatch } from '../../../store/injectables';
+import { update } from '../../../store/profile-slice';
 
 @Component({
   selector: 'app-edit',
@@ -17,6 +19,8 @@ export class EditComponent implements OnInit{
     private profileService: ProfileService
   ) {}
 
+  public dispatch = injectAppDispatch()
+  
   editForm = new FormGroup({
     title: new FormControl('',[
       Validators.required,
@@ -43,6 +47,7 @@ export class EditComponent implements OnInit{
       const { title, body } = this.editForm.value
       if (postId && title && body) {
         const updatedPost = await this.profileService.updatePost(postId, { title, body })
+        this.dispatch(update(updatedPost))
         this.router.navigate(['/profile'])
       }
     }

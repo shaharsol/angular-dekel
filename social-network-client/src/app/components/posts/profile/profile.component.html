@@ -1,9 +1,22 @@
-<app-new (newPost)="addPost($event)"></app-new>
-@for (post of profilePosts; track post.id) {
+<!-- 
+    before redux we needed to start the output process
+    <app-new (newPost)="addPost($event)"></app-new> 
+    after redux, we don't need
+-->
+<app-new></app-new>
+@for (post of profilePosts(); track post.id) {
+    <!-- 
+    before redux we had to propagate the output events
     <app-post
         [post]="post" 
         [allowActions]="true"
         (deletedPost)="removePost($event)"
+    ></app-post> 
+    after redux, we don't need that any longer...
+    -->
+    <app-post
+        [post]="post" 
+        [allowActions]="true"
     ></app-post>
 }
 @empty {

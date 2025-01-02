@@ -4,6 +4,8 @@ import { DatePipe } from '@angular/common';
 import { ProfileService } from '../../../services/profile.service';
 import { Router } from '@angular/router';
 import { CommentsComponent } from "../comments/comments.component";
+import { injectAppDispatch } from '../../../store/injectables';
+import { remove } from '../../../store/profile-slice';
 
 @Component({
   selector: 'app-post',
@@ -14,7 +16,8 @@ import { CommentsComponent } from "../comments/comments.component";
 export class PostComponent {
   post = input<Post>()
   allowActions = input<boolean>(false)
-  deletedPost = output<string>()
+  // deletedPost = output<string>()
+  public dispatch = injectAppDispatch()
 
   constructor( 
     private profileService: ProfileService,
@@ -28,7 +31,10 @@ export class PostComponent {
       if (isDeleted) {
         // remove from UI
         // somehow let the parent know they need to delete the post
-        this.deletedPost.emit(post.id)
+
+        // instead of igniting the output events process, simply notify redux...
+        // this.deletedPost.emit(post.id)
+        this.dispatch(remove({id: post.id}))
       }
     }
   }

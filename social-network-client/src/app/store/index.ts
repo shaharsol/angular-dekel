@@ -1,11 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit'
 import followingReducer from './following-slice'
 import followersReducer from './followers-slice'
+import profileReducer from './profile-slice'
 
 export const store = configureStore({
   reducer: {
     following: followingReducer,
-    followers: followersReducer
+    followers: followersReducer,
+    profile: profileReducer
   },
 })
 
