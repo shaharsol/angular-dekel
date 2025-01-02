@@ -26,11 +26,11 @@ export interface ProfileState {
 //   filteredPosts: Post[]
 // }
 
-export interface ProfileState {
-  posts: Post[]
-  visiblePosts: Post[],
-  // filteredPosts: Post[]
-}
+// export interface ProfileState {
+//   posts: Post[]
+//   visiblePosts: Post[],
+//   // filteredPosts: Post[]
+// }
 
 const initialState: ProfileState = {
   posts: [],
