@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 import { User } from '../models/users/user.model'
 import { Post } from '../models/posts/post.model'
+import { Comment } from '../models/comments/comment.model'
 
 export interface ProfileState {
   posts: Post[],
@@ -28,9 +29,13 @@ export const profileSlice = createSlice({
       const index = state.posts.findIndex(post => post.id === action.payload.id)
       if(index > -1) state.posts[index] = action.payload
     }, 
+    addComment: (state, action: PayloadAction<Comment>) => {
+      const index = state.posts.findIndex(post => post.id === action.payload.postId)
+      if(index > -1) state.posts[index].comments.push(action.payload)
+    }
   },
 })
 
-export const { init, add, remove, update } = profileSlice.actions
+export const { init, add, remove, update, addComment } = profileSlice.actions
 
 export default profileSlice.reducer

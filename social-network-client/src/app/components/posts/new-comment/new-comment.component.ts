@@ -1,6 +1,8 @@
 import { Component, input } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ProfileService } from '../../../services/profile.service';
+import { injectAppDispatch } from '../../../store/injectables';
+import { addComment } from '../../../store/profile-slice';
 
 @Component({
   selector: 'app-new-comment',
@@ -16,6 +18,8 @@ export class NewCommentComponent {
 
   postId = input<string>()
 
+  public dispatch = injectAppDispatch()
+  
   editForm = new FormGroup({
     body: new FormControl('', [
       Validators.required,
@@ -29,7 +33,8 @@ export class NewCommentComponent {
       const postId = this.postId()
       if (postId && body) {
         const newComment = await this.profileService.addComment(postId, { body })
-        console.log(newComment)
+        // console.log(newComment)
+        this.dispatch(addComment(newComment))
       }
     }
   }

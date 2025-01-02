@@ -1,6 +1,9 @@
 .post {
     border: 1px dashed purple;  
     padding: 4px;
+    background-color: transparent;
+    transition: all ease-in 0.2s;
+
 }
 
 .post > .title {
@@ -9,4 +12,9 @@
 
 .post > .byLine {
     font-style: italic;
+}
+
+.newPost {
+    transition: all ease-in 0.2s;
+    background-color: yellow;
 }
