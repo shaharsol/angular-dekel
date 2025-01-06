@@ -6,4 +6,8 @@
         <a routerLink="/profile" routerLinkActive="active" ariaCurrentWhenActive="page">Profile</a>
         <a routerLink="/feed" routerLinkActive="active" ariaCurrentWhenActive="page">Feed</a>
     </div>
+    <div>
+        <p>hello {{username()}} </p>
+        <button (click)="logout()">logout</button>
+    </div>
 </div>

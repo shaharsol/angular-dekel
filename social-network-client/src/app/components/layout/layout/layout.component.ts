@@ -1,4 +1,4 @@
-import { Component, OnInit, signal } from '@angular/core';
+import { Component, computed, OnInit, signal } from '@angular/core';
 import { HeaderComponent } from "../header/header.component";
 import { FollowersComponent } from "../followers/followers.component";
 import { FollowingComponent } from '../following/following.component';
@@ -25,9 +25,9 @@ export class LayoutComponent implements OnInit{
     private authService: AuthService
   ) {}
 
-  jwt = signal<string>('')
+  public jwt = computed(() => this.authService.jwt())
 
   ngOnInit () {
-    this.jwt.set(this.authService.jwt())
+    // this.jwt.set(this.authService.jwt())
   }
 }
