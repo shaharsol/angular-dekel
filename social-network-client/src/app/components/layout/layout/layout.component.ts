@@ -6,6 +6,7 @@ import { FooterComponent } from '../footer/footer.component';
 import { RouterOutlet } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
 import { LoginComponent } from "../../auth/login/login.component";
+import { SocketComponent } from "../socket/socket.component";
 
 @Component({
   selector: 'app-layout',
@@ -15,7 +16,8 @@ import { LoginComponent } from "../../auth/login/login.component";
     FollowingComponent,
     FooterComponent,
     RouterOutlet,
-    LoginComponent
+    LoginComponent,
+    SocketComponent
 ],
   templateUrl: './layout.component.html',
   styleUrl: './layout.component.css'
