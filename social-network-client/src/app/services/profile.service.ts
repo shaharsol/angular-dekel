@@ -6,19 +6,28 @@ import { firstValueFrom } from 'rxjs';
 import { Draft } from '../models/posts/draft.model';
 import { CommentDraft } from '../models/comments/comment-draft.model';
 import { Comment } from '../models/comments/comment.model';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProfileService {
 
-  constructor( private httpClient: HttpClient ) { }
+  constructor( 
+    private httpClient: HttpClient,
+    private authService: AuthService
+  ) { }
 
   public rand = Math.random()
 
   async getUserPosts(): Promise<Post[]> {
 
     const response = this.httpClient.get<Post[]>(`${environment.restServerUrl}/posts`)  
+    // const response = this.httpClient.get<Post[]>(`${environment.restServerUrl}/posts`, {
+    //   headers: {
+    //     'Authorization': `Bearer ${this.authService.jwt()}`
+    //   }
+    // })  
     // const profile = await firstValueFrom(response)
     // return profile
     return firstValueFrom(response)
