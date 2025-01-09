@@ -13,4 +13,8 @@ export class SocketComponent {
   ) {
 
   }
+
+  ngOnInit() {
+    this.socketService.start()
+  }
 }
