@@ -21,6 +21,10 @@ export class AuthService {
     const decoded = jwtDecode<User>(this.jwt())
     return decoded.name
   })
+  userId = computed(() => {
+    const decoded = jwtDecode<User>(this.jwt())
+    return decoded.id
+  })
 
   async login(login: Login): Promise<string> {
     const response = this.httpClient.post<{jwt: string}>(`${environment.restServerUrl}/auth/login`, login)
