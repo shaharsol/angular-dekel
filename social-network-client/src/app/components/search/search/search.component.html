@@ -1,0 +1,8 @@
+<input [(ngModel)]="search" (keyup)="filter()">
+
+
+<ul>
+    @for (comment of filterredComments; track comment.id) {
+        <li>{{comment.body}}</li>
+    }
+</ul>
